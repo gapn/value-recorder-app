@@ -12,8 +12,8 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 
 ## ✨ Features
 
-* [ ] **Decimal Value Control:** An input field to set a number, with "Up" and "Down" buttons to adjust the value by 0.1.
-* [ ] **Live Clock:** A real-time display of the current date and time that is always visible.
+* [x] **Decimal Value Control:** An input field to set a number, with "Up" and "Down" buttons to adjust the value by 0.1.
+* [x] **Live Clock:** A real-time display of the current date and time that is always visible.
 * [ ] **Session-Based Recording:** A "Start/Stop" button to control the logging process.
 * [ ] **Custom Intervals:** A setting to define how often the current number is recorded (e.g., every 5 seconds).
 * [ ] **Timestamped Data:** Each recorded value is saved with the precise date and time of capture (`DD.MM.YYYY; HH:MM:SS; value`).

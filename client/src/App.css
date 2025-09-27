@@ -7,3 +7,7 @@
   background: linear-gradient(45deg,rgba(0, 29, 250, 0.69) 0%, rgba(41, 199, 20, 0.84) 50%, rgba(252, 252, 252, 0.89) 100%);
   color: black;
 }
+
+div:focus {
+  outline: none;
+}
