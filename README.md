@@ -49,8 +49,54 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 
 ## 🧑‍💻 Getting Started
 
-Comming soon...
+To get a local copy up and running, follow these simple steps. This project contains a frontend (root folder) and a backend (`/server`), which must be run in separate terminals.
 
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/) and npm installed on your machine.
+
+### Installation
+
+1.  Clone the repo:
+    ```bash
+    git clone [https://github.com/gapn/value-recorder-app.git](https://github.com/gapn/value-recorder-app.git)
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd value-recorder-app
+    ```
+3.  **Set up the Frontend:**
+    ```bash
+    # In the root project folder
+    npm install
+    ```
+4.  **Set up the Backend:**
+    ```bash
+    # Navigate to the server folder
+    cd server
+
+    # Install NPM packages
+    npm install
+    ```
+
+### Running the Application
+
+You will need two terminals open simultaneously.
+
+1.  **Start the Backend Server:**
+    ```bash
+    # In the /server directory
+    npm start
+    ```
+    The server will be running at `http://localhost:3001`.
+
+2.  **Start the Frontend Development Server:**
+    ```bash
+    # In the root value-recorder-app directory
+    npm run dev
+    ```
+    The application will open in your browser, usually at `http://localhost:5173`.
+    
 ---
 
 ## License

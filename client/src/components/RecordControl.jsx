@@ -12,6 +12,22 @@ function RecordControl({ value }) {
     }, [value]);
 
     const toggleRecording = () => {
+        if (isRecording) {
+            fetch('http://localhost:3001/api/recordings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', },
+                body: JSON.stringify(recordedData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);
+                setRecordedData([]); 
+            })
+            .catch((error) => {
+                console.error('Error sending recording:', error);
+            });
+        };
+
         setIsRecording(!isRecording);
     };
 
