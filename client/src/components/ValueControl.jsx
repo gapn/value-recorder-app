@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
-function ValueControl() {
-    const [value, setValue] = useState(25.0);
+function ValueControl({ value, setValue }) {
+    
     const divRef = useRef(null);
 
     useEffect(() => {
-        setTimeout(() => {
+        if (divRef.current) {
             divRef.current.focus();
-        }, 0);
+        }
     }, []);
 
     const decreaseValue = () => {
