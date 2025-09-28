@@ -11,15 +11,29 @@ const sessionRecordings = [];
 app.post('/api/recordings', (req, res) => {
     const recordedData = req.body;
 
+    const newSession = {
+        id: Date.now(),
+        saveAt: new Date().toISOString(),
+        data: recordedData,
+    };
+
+    sessionRecordings.push(newSession);
+
     console.log('recieved new recording data:');
     console.log(recordedData);
 
-    res.status(201).json({ message: 'Recording received successfully!' });
+    console.log(`Recording saved successfully! Total sessions: ${sessionRecordings.length}`);
+
+    res.status(201).json({ message: 'Recording received successfully!', session: newSession });
 });
 
 
 app.get('/', (req, res) => {
   res.send('Hello from the Value Recorder App Server!');
+});
+
+app.get('/api/recordings', (req, res) => {
+    res.status(200).json(sessionRecordings);
 });
 
 app.listen(port, () => {

@@ -3,6 +3,8 @@ import './App.css'
 import LiveClock from './components/LiveClock.jsx'
 import ValueControl from './components/ValueControl.jsx'
 import RecordControl from './components/RecordControl.jsx'
+import SessionList from './components/SessionList.jsx';
+
 
 function App() {
 
@@ -14,6 +16,7 @@ function App() {
       <LiveClock />
       <ValueControl value={value} setValue={setValue} />
       <RecordControl value={value} />
+      <SessionList />
     </>
   );
 }
