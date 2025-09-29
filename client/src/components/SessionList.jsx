@@ -26,8 +26,17 @@ function SessionList() {
                 <button onClick={fetchSessions}>Refresh List</button>
                 <ul>
                     {sessions.map(session => (
-                        <li key={session.id} onClick={() => handleSessionClick(session)} style={{cursor: 'pointer'}}>
-                            Session saved at: {new Date(session.saveAt).toLocaleString()} ({session.data.length} records)
+                        <li key={session.id}>
+                            <span onClick={() => handleSessionClick(session)} style={{cursor: 'pointer'}}>
+                                Session saved at: {new Date(session.saveAt).toLocaleString()} ({session.data.length} records)
+                            </span>
+                            <a 
+                                href={`http://localhost:3001/api/recordings/${session.id}/csv`} 
+                                download={`recording-${session.id}.csv`}
+                                style={{marginLeft: '10px'}}
+                            >
+                                Download CSV
+                            </a>
                         </li>
                     ))}
                 </ul>

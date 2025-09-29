@@ -36,6 +36,25 @@ app.get('/api/recordings', (req, res) => {
     res.status(200).json(sessionRecordings);
 });
 
+app.get('/api/recordings/:id/csv', (req, res) => {
+    const sessionId = parseInt(req.params.id, 10);
+    const session = sessionRecordings.find(s => s.id === sessionId);
+
+    if (!session) {
+        return res.status(404).send('Session not found');
+    };
+
+    const header = 'Timestamp,Value\n';
+    const csvRows = session.data.map(log => {
+        return log + '\n';
+    })
+    const csvContent = header + csvRows.join('');
+
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="recording-${sessionId}.csv"`);
+    res.status(200).end(csvContent);
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
