@@ -13,6 +13,7 @@ app.post('/api/recordings', (req, res) => {
 
     const newSession = {
         id: Date.now(),
+        name: `Recording @ ${new Date().toLocaleTimeString()}`,
         saveAt: new Date().toISOString(),
         data: recordedData,
     };
@@ -54,6 +55,21 @@ app.get('/api/recordings/:id/csv', (req, res) => {
     res.setHeader('Content-Disposition', `attachment; filename="recording-${sessionId}.csv"`);
     res.status(200).end(csvContent);
 });
+
+app.patch('/api/recordings/:id', (req, res) => {
+    const sessionId = parseInt(req.params.id, 10);
+    const { newName } = req.body;
+    const session = sessionRecordings.find(s => s.id === sessionId);
+
+    if (!session) {
+        return res.status(404).send('Session not found');
+    };
+
+    session.name = newName;
+
+    console.log(`Session${sessionId} renamed to: ${newName}`);
+    res.status(200).json(session);
+})
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 function SessionList() {
     const [sessions, setSessions] = useState([]);
     const [selectedSessionData, setSelectedSessionData] = useState(null);
+    const [editingSessionId, setEditingSessionId] = useState(null);
+    const [newSessionName, setNewSessionName] = useState('');
 
     const fetchSessions = () => {
         fetch('http://localhost:3001/api/recordings')
@@ -19,6 +21,24 @@ function SessionList() {
         setSelectedSessionData(session.data);
     };
 
+    const handleRenameClick = (session) => {
+        setEditingSessionId(session.id);
+        setNewSessionName(session.name);
+    };
+
+    const handleSaveRename = (sessionId) => {
+        fetch(`http://localhost:3001/api/recordings/${sessionId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ newName: newSessionName }),
+        })
+        .then(() => {
+            fetchSessions();
+            setEditingSessionId(null);
+        })
+        .catch(error => console.error('Error renaming session:', error));
+    };
+
     return (
         <>
             <div>
@@ -27,9 +47,22 @@ function SessionList() {
                 <ul>
                     {sessions.map(session => (
                         <li key={session.id}>
-                            <span onClick={() => handleSessionClick(session)} style={{cursor: 'pointer'}}>
-                                Session saved at: {new Date(session.saveAt).toLocaleString()} ({session.data.length} records)
-                            </span>
+                            {editingSessionId === session.id ? (
+                                <input
+                                type='text'
+                                value={newSessionName}
+                                onChange={(e) => setNewSessionName(e.target.value)}
+                                />
+                            ) : (
+                                <span onClick={() => handleSessionClick(session)} style={{cursor: 'pointer'}}>
+                                    {session.name} ({session.data.length} records)
+                                </span>
+                            )}
+                            {editingSessionId === session.id ? (
+                                <button onClick={() => handleSaveRename(session.id)}>Save</button>
+                            ) : (
+                                <button onClick={() => handleRenameClick(session)}>Rename</button>
+                            )}
                             <a 
                                 href={`http://localhost:3001/api/recordings/${session.id}/csv`} 
                                 download={`recording-${session.id}.csv`}

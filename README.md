@@ -17,9 +17,9 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 * [x] **Session-Based Recording:** A "Start/Stop" button to control the logging process.
 * [x] **Custom Intervals:** A setting to define how often the current number is recorded (e.g., every 5 seconds).
 * [x] **Timestamped Data:** Each recorded value is saved with the precise date and time of capture (`DD.MM.YYYY; HH:MM:SS; value`).
-* [ ] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file.
-* [ ] **Session Management:** Stop a recording and it is saved on the server without being overwritten. Users can start a new recording and the previous one is kept.
-* [ ] **Saved Session List:** View, rename, and download previously recorded sessions.
+* [x] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file.
+* [x] **Session Management:** Stop a recording and it is saved on the server without being overwritten. Users can start a new recording and the previous one is kept.
+* [x] **Saved Session List:** View, rename, and download previously recorded sessions.
 * [ ] **Reminder Banner:** A non-intrusive banner appears after 61 data points have been recorded to notify the user, while recording continues.
 * [ ] **Keyboard Shortcuts:**
     * `ArrowUp` / `ArrowDown`: Adjust the number.
@@ -96,7 +96,7 @@ You will need two terminals open simultaneously.
     npm run dev
     ```
     The application will open in your browser, usually at `http://localhost:5173`.
-    
+
 ---
 
 ## License
