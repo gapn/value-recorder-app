@@ -17,13 +17,15 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 * [x] **Session-Based Recording:** A "Start/Stop" button to control the logging process.
 * [x] **Custom Intervals:** A setting to define how often the current number is recorded (e.g., every 5 seconds).
 * [x] **Timestamped Data:** Each recorded value is saved with the precise date and time of capture (`DD.MM.YYYY; HH:MM:SS; value`).
-* [x] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file.
+* [x] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file with corrected name.
 * [x] **Session Management:** Stop a recording and it is saved on the server without being overwritten. Users can start a new recording and the previous one is kept.
 * [x] **Saved Session List:** View, rename, and download previously recorded sessions.
-* [ ] **Reminder Banner:** A non-intrusive banner appears after 61 data points have been recorded to notify the user, while recording continues.
 * [ ] **Keyboard Shortcuts:**
     * `ArrowUp` / `ArrowDown`: Adjust the number.
-    * `Shift + Space`: Start or stop the recording.
+    * `Space`: Start or stop the recording.
+    * `r`: Refresh list of saved sessions
+* [ ] **Reminder Banner:** A non-intrusive banner appears after 61 data points have been recorded to notify the user, while recording continues.
+* [ ] **Variable Resolution:** An option to change the increment/decrement value (e.g., to 0.01).
 
 ---
 
@@ -32,8 +34,6 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 * [ ] **Persistent Storage:** Integrate a database (like MongoDB or PostgreSQL) or use browser local storage to save sessions permanently.
 * [ ] **Data Visualization:** Add a simple chart to visualize the recorded data over time.
 * [ ] **User Accounts:** Allow users to sign up and save their recording sessions to an account.
-* [ ] **Add Notes:** Implement a feature to add a text note or label to each recording session.
-* [ ] **Desktop Notifications:** Provide browser notifications when a certain number of recordings has been reached.
 
 ---
 
@@ -49,7 +49,7 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 
 ## 🧑‍💻 Getting Started
 
-To get a local copy up and running, follow these simple steps. This project contains a frontend (root folder) and a backend (`/server`), which must be run in separate terminals.
+To get a local copy up and running, follow these simple steps. This project contains a frontend (`/client`) and a backend (`/server`), which must be run in **separate terminals**.
 
 ### Prerequisites
 
@@ -92,7 +92,7 @@ You will need two terminals open simultaneously.
 
 2.  **Start the Frontend Development Server:**
     ```bash
-    # In the root value-recorder-app directory
+    # In the /client value-recorder-app directory
     npm run dev
     ```
     The application will open in your browser, usually at `http://localhost:5173`.
