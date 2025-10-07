@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 
-function SessionList() {
+function SessionList({ editingSessionId, setEditingSessionId }) {
     const [sessions, setSessions] = useState([]);
     const [selectedSessionData, setSelectedSessionData] = useState(null);
-    const [editingSessionId, setEditingSessionId] = useState(null);
     const [newSessionName, setNewSessionName] = useState('');
 
     const fetchSessions = () => {

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-function RecordControl({ value }) {
-    const [isRecording, setIsRecording] = useState(false);
+function RecordControl({ value, isRecording, onToggleRecording }) {
     const [recordInterval, setRecordInterval] = useState(5);
     const [recordedData, setRecordedData] = useState([]);
     const [countdown, setCountdown] = useState(5);
@@ -11,25 +10,23 @@ function RecordControl({ value }) {
         latestValueRef.current = value;
     }, [value]);
 
-    const toggleRecording = () => {
-        if (isRecording) {
+    useEffect(() => {
+        if (!isRecording && recordedData.length > 0) {
             fetch('http://localhost:3001/api/recordings', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', },
+                headers: { 'Content-type': 'application/json', },
                 body: JSON.stringify(recordedData),
             })
             .then(response => response.json())
             .then(data => {
                 console.log('Server response:', data);
-                setRecordedData([]); 
+                setRecordedData([]);
             })
             .catch((error) => {
-                console.error('Error sending recording:', error);
+                console.log('Error sending recording:', error);
             });
         };
-
-        setIsRecording(!isRecording);
-    };
+    }, [isRecording]);
 
     const handleIntervalChange = (event) => {
         const newInterval = parseInt(event.target.value, 10);
@@ -76,7 +73,9 @@ function RecordControl({ value }) {
     return (
         <>
             <div>
-                <button onClick={toggleRecording}>{isRecording ? 'Stop Recording' : 'Start Recording'}</button>
+                <button onClick={onToggleRecording}>
+                    {isRecording ? 'Stop Recording' : 'Start Recording'}
+                </button>
                 <input
                     type='number'
                     value={recordInterval}

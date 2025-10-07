@@ -52,7 +52,8 @@ app.get('/api/recordings/:id/csv', (req, res) => {
     const csvContent = header + csvRows.join('');
 
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename="recording-${sessionId}.csv"`);
+    const filename = session.name ? `${session.name}.csv` : `recording-${sessionId}.csv`;
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.status(200).end(csvContent);
 });
 

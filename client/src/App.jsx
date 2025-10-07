@@ -26,7 +26,24 @@ function App() {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      event
+      if (editingSessionId !== null) {
+        return;
+      }
+
+      switch (event.key) {
+        case 'ArrowUp':
+          increaseValue();
+          break;
+        case 'ArrowDown':
+          decreaseValue();
+          break;
+        case ' ':
+          event.preventDefault();
+          toggleRecording();
+          break;
+        default:
+          break;
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -35,7 +52,7 @@ function App() {
       window.removeEventListener('keydown', handleKeyDown);
     };
 
-  }, [])
+  }, [editingSessionId, increaseValue, decreaseValue, toggleRecording]);
 
   return (
     <>
