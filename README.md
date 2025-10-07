@@ -59,7 +59,7 @@ Make sure you have [Node.js](https://nodejs.org/) and npm installed on your mach
 
 1.  Clone the repo:
     ```bash
-    git clone [https://github.com/gapn/value-recorder-app.git](https://github.com/gapn/value-recorder-app.git)
+    git clone https://github.com/gapn/value-recorder-app.git
     ```
 2.  Navigate to the project directory:
     ```bash
