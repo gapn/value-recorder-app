@@ -4,6 +4,7 @@ import LiveClock from './components/LiveClock.jsx'
 import ValueControl from './components/ValueControl.jsx'
 import RecordControl from './components/RecordControl.jsx'
 import SessionList from './components/SessionList.jsx';
+import RecordingLog from './components/RecordingLog.jsx';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [editingSessionId, setEditingSessionId] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [recordedData, setRecordedData] = useState([]);
 
   const increaseValue = () => {
     setValue(prevValue => parseFloat((prevValue + 0.1).toFixed(1)));
@@ -60,7 +62,7 @@ function App() {
 
   return (
     <>
-      <p>App will be here</p>
+      <h1>Value Recorder</h1>
       <LiveClock />
       <ValueControl 
         value={value}
@@ -72,12 +74,19 @@ function App() {
         value={value}
         isRecording={isRecording}
         onToggleRecording={toggleRecording}
+        recordedData={recordedData}
+        setRecordedData={setRecordedData}
       />
-      <SessionList 
-        editingSessionId={editingSessionId}
-        setEditingSessionId={setEditingSessionId}
-        refreshTrigger={refreshTrigger}
-      />
+      <div className='scrollable-container'>
+        <RecordingLog recordedData={recordedData} />
+      </div>
+      <div className='scrollable-container'>
+        <SessionList
+          editingSessionId={editingSessionId}
+          setEditingSessionId={setEditingSessionId}
+          refreshTrigger={refreshTrigger}
+        />
+      </div>
     </>
   );
 }

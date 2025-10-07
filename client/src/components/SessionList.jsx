@@ -39,7 +39,7 @@ function SessionList({ editingSessionId, setEditingSessionId, refreshTrigger }) 
     };
 
     return (
-        <>
+        <div>
             <div>
                 <h2>Saved Sessions</h2>
                 <button onClick={fetchSessions}>Refresh List</button>
@@ -89,7 +89,7 @@ function SessionList({ editingSessionId, setEditingSessionId, refreshTrigger }) 
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

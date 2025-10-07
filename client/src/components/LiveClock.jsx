@@ -21,11 +21,11 @@ function LiveClock() {
     const second = time.getSeconds().toString().padStart(2, '0');
 
     return (
-        <>
+        <div>
             <div>
                 {day}.{month}.{year} {hour}:{minute}:{second}
             </div>
-        </>
+        </div>
     );
 }
 

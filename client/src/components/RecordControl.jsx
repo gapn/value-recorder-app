@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 
-function RecordControl({ value, isRecording, onToggleRecording }) {
+function RecordControl({ value, isRecording, onToggleRecording, recordedData, setRecordedData }) {
     const [recordInterval, setRecordInterval] = useState(5);
-    const [recordedData, setRecordedData] = useState([]);
     const [countdown, setCountdown] = useState(5);
-
     const latestValueRef = useRef(value);
+
     useEffect(() => {
         latestValueRef.current = value;
     }, [value]);
@@ -26,7 +25,7 @@ function RecordControl({ value, isRecording, onToggleRecording }) {
                 console.log('Error sending recording:', error);
             });
         };
-    }, [isRecording]);
+    }, [isRecording, recordedData, setRecordedData]);
 
     const handleIntervalChange = (event) => {
         const newInterval = parseInt(event.target.value, 10);
@@ -74,10 +73,10 @@ function RecordControl({ value, isRecording, onToggleRecording }) {
         return () => {
             clearInterval(timerId);
         };
-    }, [isRecording, recordInterval]);
+    }, [isRecording, recordInterval, setRecordedData]);
 
     return (
-        <>
+        <div>
             <div>
                 <button onClick={onToggleRecording}>
                     {isRecording ? 'Stop Recording' : 'Start Recording'}
@@ -89,11 +88,8 @@ function RecordControl({ value, isRecording, onToggleRecording }) {
                     onKeyDown={handleIntervalKeyDown}
                 />
                 <p>Next log in: {countdown} seconds.</p>
-                {recordedData.map((record, index) => (
-                    <p key={index}>{record}</p>
-                ))}
             </div>
-        </>
+        </div>
     );
 }
 

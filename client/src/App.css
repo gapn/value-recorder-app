@@ -11,3 +11,14 @@
 div:focus {
   outline: none;
 }
+
+.scrollable-container {
+  height: 20vh; /* 20% of the viewport height */
+  width: 80%; /* Or whatever width you prefer */
+  overflow-y: auto; /* Adds a scrollbar when content overflows */
+  border: 1px solid #555;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
