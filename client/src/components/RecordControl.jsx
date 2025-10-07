@@ -77,17 +77,22 @@ function RecordControl({ value, isRecording, onToggleRecording, recordedData, se
 
     return (
         <div>
-            <div>
-                <button onClick={onToggleRecording}>
+            <div className='d-flex flex-column align-items-center'>
+                <button onClick={onToggleRecording} className='btn btn-primary'>
                     {isRecording ? 'Stop Recording' : 'Start Recording'}
                 </button>
-                <input
-                    type='number'
-                    value={recordInterval}
-                    onChange={handleIntervalChange}
-                    onKeyDown={handleIntervalKeyDown}
-                />
-                <p>Next log in: {countdown} seconds.</p>
+                <div className='input-group mt-2'>
+                    <span className='input-group-text'>Interval</span>
+                    <input
+                        type='number'
+                        className='form-control text-center'
+                        value={recordInterval}
+                        onChange={handleIntervalChange}
+                        onKeyDown={handleIntervalKeyDown}
+                    />
+                    <span className='input-group-text'>Seconds</span>
+                </div>
+                <p className='fw-bold mt-2'>Next log in: {countdown} seconds.</p>
             </div>
         </div>
     );

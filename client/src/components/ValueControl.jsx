@@ -19,20 +19,21 @@ function ValueControl({ value, setValue, onIncrease, onDecrease }) {
     };
 
     return (
-        <div>
-            <div>
+        <div className='text-center'>
+            <div className='input-group mt-2'>
                 <input
                     type='number'
+                    className='form-control text-center'
                     value={startValue}
                     onChange={(e) => setStartValue(e.target.value)}
                     onKeyDown={handleSetStartValueKeyDown}
                 />
-                <button onClick={handleSetValue}>Set Start Value</button>
+                <button onClick={handleSetValue} className='input-group-text fw-bold'>Set Start Value</button>
             </div>
             <div>
-                <button onClick={onDecrease}>Decrease</button>
-                {value.toFixed(1)}
-                <button onClick={onIncrease}>Increase</button>
+                <button onClick={onDecrease} className='btn-emoji'>⬇️</button>
+                    <span className='mx-3 fs-3 fw-bold'>{value.toFixed(1)}</span>
+                <button onClick={onIncrease} className='btn-emoji'>⬆️</button>
             </div>
         </div>
     );

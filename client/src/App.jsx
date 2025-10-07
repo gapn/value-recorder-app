@@ -61,33 +61,43 @@ function App() {
   }, [editingSessionId, increaseValue, decreaseValue, toggleRecording]);
 
   return (
-    <>
-      <h1>Value Recorder</h1>
-      <LiveClock />
-      <ValueControl 
-        value={value}
-        setValue={setValue}
-        onIncrease={increaseValue}
-        onDecrease={decreaseValue} 
-      />
-      <RecordControl 
-        value={value}
-        isRecording={isRecording}
-        onToggleRecording={toggleRecording}
-        recordedData={recordedData}
-        setRecordedData={setRecordedData}
-      />
-      <div className='scrollable-container'>
-        <RecordingLog recordedData={recordedData} />
+    <div>
+      <div className='container-fluid d-flex flex-column min-vh-100 py-5'>
+        <h1 className='text-center'>Value Recorder</h1>
+        <div className='row flex-grow-1 gx-4 mt-3'>
+          <div className='col-4'>
+            <div className='scrollable-container h-50 '>
+              <RecordingLog recordedData={recordedData} />
+            </div>
+          </div>
+          <div className='col-4 d-flex flex-column align-items-center'>
+            <LiveClock />
+            <ValueControl 
+              value={value}
+              setValue={setValue}
+              onIncrease={increaseValue}
+              onDecrease={decreaseValue} 
+            />
+            <RecordControl 
+              value={value}
+              isRecording={isRecording}
+              onToggleRecording={toggleRecording}
+              recordedData={recordedData}
+              setRecordedData={setRecordedData}
+            />
+          </div>
+          <div className='col-4 d-flex flex-column'>
+            <div className='scrollable-container h-50'>
+              <SessionList
+                editingSessionId={editingSessionId}
+                setEditingSessionId={setEditingSessionId}
+                refreshTrigger={refreshTrigger}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-      <div className='scrollable-container'>
-        <SessionList
-          editingSessionId={editingSessionId}
-          setEditingSessionId={setEditingSessionId}
-          refreshTrigger={refreshTrigger}
-        />
-      </div>
-    </>
+    </div>
   );
 }
 
