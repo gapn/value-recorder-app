@@ -20,7 +20,7 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 * [x] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file with corrected name.
 * [x] **Session Management:** Stop a recording and it is saved on the server without being overwritten. Users can start a new recording and the previous one is kept.
 * [x] **Saved Session List:** View, rename, and download previously recorded sessions.
-* [ ] **Keyboard Shortcuts:**
+* [x] **Keyboard Shortcuts:**
     * `ArrowUp` / `ArrowDown`: Adjust the number.
     * `Space`: Start or stop the recording.
     * `r`: Refresh list of saved sessions
@@ -67,15 +67,15 @@ Make sure you have [Node.js](https://nodejs.org/) and npm installed on your mach
     ```
 3.  **Set up the Frontend:**
     ```bash
-    # In the root project folder
+    # Navigate into the client folder
+    cd client
     npm install
+    # Go back to the root directory
+    cd ..
     ```
 4.  **Set up the Backend:**
     ```bash
-    # Navigate to the server folder
     cd server
-
-    # Install NPM packages
     npm install
     ```
 
