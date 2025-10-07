@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-function SessionList({ editingSessionId, setEditingSessionId }) {
+function SessionList({ editingSessionId, setEditingSessionId, refreshTrigger }) {
     const [sessions, setSessions] = useState([]);
     const [selectedSessionData, setSelectedSessionData] = useState(null);
     const [newSessionName, setNewSessionName] = useState('');
@@ -14,7 +14,7 @@ function SessionList({ editingSessionId, setEditingSessionId }) {
 
     useEffect(() => {
         fetchSessions();
-    }, []);
+    }, [refreshTrigger]);
         
     const handleSessionClick = (session) => {
         setSelectedSessionData(session.data);
@@ -51,6 +51,12 @@ function SessionList({ editingSessionId, setEditingSessionId }) {
                                 type='text'
                                 value={newSessionName}
                                 onChange={(e) => setNewSessionName(e.target.value)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter') {
+                                        handleSaveRename(session.id);
+                                        event.target.blur();
+                                    }
+                                }}
                                 />
                             ) : (
                                 <span onClick={() => handleSessionClick(session)} style={{cursor: 'pointer'}}>

@@ -36,6 +36,12 @@ function RecordControl({ value, isRecording, onToggleRecording }) {
         };
     };
 
+    const handleIntervalKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.target.blur();
+        }
+    };
+
     useEffect(() => {
         if (!isRecording) {
             setCountdown(recordInterval);
@@ -80,6 +86,7 @@ function RecordControl({ value, isRecording, onToggleRecording }) {
                     type='number'
                     value={recordInterval}
                     onChange={handleIntervalChange}
+                    onKeyDown={handleIntervalKeyDown}
                 />
                 <p>Next log in: {countdown} seconds.</p>
                 {recordedData.map((record, index) => (

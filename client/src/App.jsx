@@ -11,6 +11,7 @@ function App() {
   const [value, setValue] = useState(25.0);
   const [isRecording, setIsRecording] = useState(false);
   const [editingSessionId, setEditingSessionId] = useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const increaseValue = () => {
     setValue(prevValue => parseFloat((prevValue + 0.1).toFixed(1)));
@@ -41,6 +42,9 @@ function App() {
           event.preventDefault();
           toggleRecording();
           break;
+        case 'r':
+          setRefreshTrigger(trigger => trigger + 1);
+          break;
         default:
           break;
       }
@@ -59,7 +63,8 @@ function App() {
       <p>App will be here</p>
       <LiveClock />
       <ValueControl 
-        value={value} 
+        value={value}
+        setValue={setValue}
         onIncrease={increaseValue}
         onDecrease={decreaseValue} 
       />
@@ -71,6 +76,7 @@ function App() {
       <SessionList 
         editingSessionId={editingSessionId}
         setEditingSessionId={setEditingSessionId}
+        refreshTrigger={refreshTrigger}
       />
     </>
   );
