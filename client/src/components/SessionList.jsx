@@ -38,6 +38,24 @@ function SessionList({ editingSessionId, setEditingSessionId, refreshTrigger }) 
         .catch(error => console.error('Error renaming session:', error));
     };
 
+    const handleDelete = async (sessionId) => {
+        if (window.confirm('Aer you sure you want to delete this session?')) {
+            try{
+                const response = await fetch(`http://localhost:3001/api/recordings/${sessionId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    fetchSessions();
+                } else {
+                    console.error('Failed to delete session');
+                };
+            } catch (error) {
+                console.error('Error deleting session:', error);
+            };
+        };
+    };
+
     return (
         <div>
             <div>
@@ -67,7 +85,10 @@ function SessionList({ editingSessionId, setEditingSessionId, refreshTrigger }) 
                                 {editingSessionId === session.id ? (
                                     <button onClick={() => handleSaveRename(session.id)} className='btn-action-sm'>Save</button>
                                 ) : (
-                                    <button onClick={() => handleRenameClick(session)} className='btn-action-sm'>Rename</button>
+                                    <div>
+                                        <button onClick={() => handleRenameClick(session)} className='btn-action-sm'>Rename</button>
+                                        <button onClick={() => handleDelete(session.id)} className='btn-action-sm'>Delete</button>
+                                    </div>
                                 )}
                                 <a 
                                     href={`http://localhost:3001/api/recordings/${session.id}/csv`} 

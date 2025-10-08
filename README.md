@@ -19,7 +19,7 @@ A live version of this project can be viewed here: **[View Live Demo](link.will.
 * [x] **Timestamped Data:** Each recorded value is saved with the precise date and time of capture (`DD.MM.YYYY; HH:MM:SS; value`).
 * [x] **Data Export:** The current set of recorded numbers can be downloaded as a `.csv` file with corrected name.
 * [x] **Session Management:** Stop a recording and it is saved on the server without being overwritten. Users can start a new recording and the previous one is kept.
-* [x] **Saved Session List:** View, rename, and download previously recorded sessions.
+* [x] **Saved Session List:** View, rename, and download and delete previously recorded sessions.
 * [x] **Keyboard Shortcuts:**
     * `ArrowUp` / `ArrowDown`: Adjust the number.
     * `Space`: Start or stop the recording.

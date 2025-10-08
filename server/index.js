@@ -28,6 +28,17 @@ app.post('/api/recordings', (req, res) => {
     res.status(201).json({ message: 'Recording received successfully!', session: newSession });
 });
 
+app.delete('/api/recordings/:id', (req, res) => {
+    const sessionId = parseInt(req.params.id, 10);
+    const sessionIndex = sessionRecordings.findIndex(s => s.id === sessionId);
+
+    if (sessionIndex === -1) {
+        return res.status(404).json({ message: 'Session not found' });
+    }
+
+    sessionRecordings.splice(sessionIndex, 1);
+    res.status(200).json({ message: 'Session deleted successfully' });
+});
 
 app.get('/', (req, res) => {
   res.send('Hello from the Value Recorder App Server!');
